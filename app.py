@@ -1,6 +1,7 @@
 # app.py
 import asyncio
 from asyncio import WindowsSelectorEventLoopPolicy
+import os
 from flask import Flask, request, jsonify, render_template
 from g4f.client import Client
 import pdfplumber
@@ -47,4 +48,5 @@ def ask():
     return jsonify({"answer": answer})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 6000))
+    app.run(host="0.0.0.0", port=port)
